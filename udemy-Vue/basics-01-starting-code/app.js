@@ -14,7 +14,22 @@ app.mount('#user-goal');*/
 new Vue({
     el: '#user-goal',
     data: {
-        courseGoal: 'Finish the curse and learn Vue!'
+        
+        courseGoalA:'Este es el curso A',
+        courseGoalB:'Este es el curso B',
+        courseHTML:'<h3>Este es un curso con TAGS html</h3>',
+
+        vueLink:'https://vuejs.org/v2/guide/components.html#Listening-to-Child-Components-Events'
+    },
+    methods:{
+        outputGoal(){
+            const randomNumber= Math.random();
+            if(randomNumber > 0.5){
+                return this.courseGoalA;
+            }else{
+                 return this.courseGoalB;
+            }
+        }
     }
 
 })

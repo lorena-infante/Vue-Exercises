@@ -18,7 +18,13 @@
     </header>
     <section id="user-goal">
       <h2>My Course Goal</h2>
-      <p>{{ courseGoal }}</p>
+      <p>{{ outputGoal() }}</p>
+      <!--v-bind se utiliza DENTRO de las tags HTML-->
+      <!--Los {{}} se utilizan ENVUELTAS como si fueran texto html, NO como atributo -->
+      <!-- v-html se utiliza para reconocer el HTML que viene desde los datos 
+        traídos por la data (o de donde venga la info) de vue -->
+      <p> Learn More <a v-bind:href="vueLink">about Vue</a>
+      <p v-html='courseHTML'></p>
     </section>
   </body>
 </html>
