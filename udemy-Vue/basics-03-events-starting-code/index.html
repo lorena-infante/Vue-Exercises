@@ -18,9 +18,19 @@
     </header>
     <section id="events">
       <h2>Events in Action</h2>
-      <button>Add</button>
-      <button>Remove</button>
+      <button v-on:click="add(10)">Add 10</button>
+      <button v-on:click="reduce(5)">Reduce 5</button>
+      <button v-on:click.right="reduce(5)">Reduce 5 con click derecho</button>
+      <!--Lock to the first value and not modifying it (v-once)-->
+      <p v-once>Starting Counter {{ counter }}</p>
       <p>Result: {{ counter }}</p>
+      <!--$event permite que el primer parámetro no se vea afectado a la hora de ejecutar la función-->
+      <input type="text" v-on:input="setName($event, 'Infante')" v-on:keyup.enter="confirmInput">
+      <p> Your Name: {{confirmedName}}</p>
+      <form v-on:submit.prevent="submitForm">
+        <input type="text">
+        <button>Sign Up</button>
+      </form>
     </section>
   </body>
 </html>
