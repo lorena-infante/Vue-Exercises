@@ -20,12 +20,24 @@ const app = Vue.createApp({
       this.counter = this.counter  - num;
     },
 
-    setName(e, lastName){
-      this.name = e.target.value + ' ' +lastName;
+    setName(e){
+      this.name = e.target.value ;
 
     },
     confirmInput(){
       this.confirmedName = this.name;
+    },
+    resetInput(){
+      this.name = '';
+    },
+    //If outputFullName is called as a method inside html it will affect the performance
+    outputFullName(){
+      console.log('Running Again');
+      if(this.name === ''){
+        return this.name ='';
+
+      } return this.name + ' ' + 'Infante';
+
     }
   }
 });

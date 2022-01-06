@@ -25,10 +25,19 @@
       <p v-once>Starting Counter {{ counter }}</p>
       <p>Result: {{ counter }}</p>
       <!--$event permite que el primer parámetro no se vea afectado a la hora de ejecutar la función-->
-      <input type="text" v-on:input="setName($event, 'Infante')" v-on:keyup.enter="confirmInput">
-      <p> Your Name: {{confirmedName}}</p>
+      <!--v-bind:value, v-on:input can be replaced by v-model-->
+      <!-- <input
+        type="text"
+        v-bind:value="name"
+        v-on:input="setName($event, 'Infante')"
+        v-on:keyup.enter="confirmInput"
+      /> -->
+      <input type="text" v-model="name">
+      <button v-on:click = "resetInput">Reset Input</button>
+      
+      <p>Your Name: {{outputFullName()}}</p>
       <form v-on:submit.prevent="submitForm">
-        <input type="text">
+        <input type="text" />
         <button>Sign Up</button>
       </form>
     </section>
