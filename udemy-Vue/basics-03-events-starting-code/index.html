@@ -33,9 +33,10 @@
         v-on:keyup.enter="confirmInput"
       /> -->
       <input type="text" v-model="name">
+      <input type="text" v-model="lastName">
       <button v-on:click = "resetInput">Reset Input</button>
       <!--calling computed prop-->
-      <p>Your Name: {{fullName}}</p>
+      <p>Your Name: {{fullname}}</p>
       <form v-on:submit.prevent="submitForm">
         <input type="text" />
         <button>Sign Up</button>
