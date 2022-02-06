@@ -3,6 +3,7 @@ const app = Vue.createApp({
 		return {
 			initialResult: 0,
 			savedNumber: 0,
+			result: '',
 		};
 	},
 	methods: {
@@ -32,14 +33,17 @@ const app = Vue.createApp({
 			} else if (this.savedNumber === 37) {
 				return 37;
 			}
+			
 		},
 	},
 	watch: {
-		showText(value) {
+		
+		counter(showText) {
+			console.log('dsfdsfdf')
 			const that = this;
-			if (value != 0) {
+			if (showText != "Nothing changed") {
 				setTimeout(function () {
-					that.showText = 0;
+					showText = 0;
 				}, 5000);
 			}
 		},
