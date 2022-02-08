@@ -34,9 +34,10 @@
         class= "demo"
         //it receives more than 1 class, evaluating if the property passed is true
         :class = "{demo: true, active: boxASelected}"
+        // the best way is to add the logic in a computed prop
       -->
       <div @click = "boxSelected('A')" class="demo" 
-      :class="{active : boxASelected}"></div>
+      :class="boxAClassess"></div>
       <div @click = "boxSelected('B')" class="demo"
       :class="{ active : boxBSelected}"></div>
       <div @click = "boxSelected('C')" class="demo"
