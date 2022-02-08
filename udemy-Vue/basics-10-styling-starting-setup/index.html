@@ -38,6 +38,8 @@
       -->
       <div @click = "boxSelected('A')" class="demo" 
       :class="boxAClassess"></div>
+      <!--//Adding style classess can also be using Vue syntax and an array with the mixed classes
+        :class= "['demo', {active: boxBSelected}]"-->
       <div @click = "boxSelected('B')" class="demo"
       :class="{ active : boxBSelected}"></div>
       <div @click = "boxSelected('C')" class="demo"
