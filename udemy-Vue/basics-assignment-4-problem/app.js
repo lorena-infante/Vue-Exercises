@@ -2,11 +2,12 @@ const app = Vue.createApp({
 	data() {
 		return {
 			userInput: "",
-			toggle: false,
+            toggle: false,
+            bgColor:""
 		};
 	},
 	computed: {
-		showHide() {
+		showHideClass() {
 			if (this.toggle === true) {
 				return { visible: this.toggle };
 			} else {
@@ -17,7 +18,6 @@ const app = Vue.createApp({
 	methods: {
 		onClickToggle() {
 			this.toggle = !this.toggle;
-			console.log(this.toggle);
 		},
 	},
 });
