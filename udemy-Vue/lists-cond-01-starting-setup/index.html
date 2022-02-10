@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vue Basics</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Jost:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+    <script src="https://unpkg.com/vue@next" defer></script>
+    <script src="app.js" defer></script>
+  </head>
+  <body>
+    <header>
+      <h1>Vue Course Goals</h1>
+    </header>
+    <section id="user-goals">
+      <h2>My course goals</h2>
+      <input v-model="inputGoal" type="text" />
+      <button @click="addGoal">Add Goal</button>
+      <!--ALWAYS use v-if and only use v-show when some property of an element switches a lot-->
+      <!--v-else must go directly AFTER an element that contains v-if on it. An element in between will break its working-->
+      <p v-if="goals.length === 0">No goals have been added yet - please start adding some!</p>
+      <ul v-for="goal in goals">
+        <li>{{goal}}</li>
+      </ul>
+      <!--Using v-for with index
+      <ul v-for="(goal, index) in goals">
+        <li>{{goal}} - {{index}}</li>
+      </ul>
+      -->
+      <!--Using v-for navigating through objects
+      <ul v-for="(data, key) in {name:'Lorencia', age: 26}">
+        <li>{{key}}: {{data}}</li>
+      </ul>
+    -->
+    </section>
+  </body>
+</html>
