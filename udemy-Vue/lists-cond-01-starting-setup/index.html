@@ -23,8 +23,8 @@
       <!--ALWAYS use v-if and only use v-show when some property of an element switches a lot-->
       <!--v-else must go directly AFTER an element that contains v-if on it. An element in between will break its working-->
       <p v-if="goals.length === 0">No goals have been added yet - please start adding some!</p>
-      <ul v-for="goal in goals">
-        <li>{{goal}}</li>
+      <ul v-else>
+        <li v-for="(goal, index) in goals" @click="removeGoal(index)">{{goal}}</li>
       </ul>
       <!--Using v-for with index
       <ul v-for="(goal, index) in goals">
