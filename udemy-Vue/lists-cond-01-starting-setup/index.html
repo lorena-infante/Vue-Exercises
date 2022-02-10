@@ -24,7 +24,13 @@
       <!--v-else must go directly AFTER an element that contains v-if on it. An element in between will break its working-->
       <p v-if="goals.length === 0">No goals have been added yet - please start adding some!</p>
       <ul v-else>
-        <li v-for="(goal, index) in goals" @click="removeGoal(index)">{{goal}}</li>
+        <!--we use :key="uniqueID" to tell vue that if we modify something inside of a for loop (delete,add, etc). It has to update the same behaviour inside the DOM. Not only altering the elements that are using v-bind or v-on-->
+        <li  v-for="(goal, index) in goals" :key="goal" @click="removeGoal(index)">
+          <p>{{goal}}</p>
+          <!--to stop default behaviour of the removegoal, when clicking inside the element, we use @click.stop-->
+          <input type="text" @click.stop>
+        </li>
+        
       </ul>
       <!--Using v-for with index
       <ul v-for="(goal, index) in goals">
