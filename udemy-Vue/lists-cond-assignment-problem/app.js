@@ -16,12 +16,7 @@ const app = Vue.createApp({
 	},
 	computed: {
 		onToggle() {
-			const that = this;
-			if (this.toggle === true) {
-				return that.toggle;
-			} else {
-				return that.toggle;
-			}
+			return this.toggle;
 		},
 	},
 });
