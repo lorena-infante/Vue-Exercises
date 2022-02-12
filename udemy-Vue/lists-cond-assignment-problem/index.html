@@ -23,7 +23,8 @@
       <input type="text" v-model="userInput">
       <button @click="addInput">Add Task</button>
       <ul v-show="toggle">
-        <li v-for="input in inputs">
+        <!--don´t forget to add :key (even if it's not being used. Just to have it in mind)-->
+        <li v-for="input in inputs" :key="input">
           <p>{{input}}</p>
         </li>
       </ul>
