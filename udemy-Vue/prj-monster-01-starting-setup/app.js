@@ -2,8 +2,7 @@
 
 function getRandomValue(min, max) {
 	//calcultes random value of damage between a min and max value
-	Math.floor(Math.random() * (max - min)) + min;
-	console.log(Math.floor(Math.random() * (max - min)) + min);
+	return Math.floor(Math.random() * (max - min)) + min;
 }
 
 const app = Vue.createApp({
@@ -13,13 +12,12 @@ const app = Vue.createApp({
 			monsterHealth: 100,
 		};
 	},
-
 	methods: {
 		//reduces monster's health
 		attackMonster() {
 			//Math.floor(Math.random()* (max-min))+ min;
 			const attackValue = getRandomValue(5, 12);
-			//reduces monter's health this.monsterHealth = this.monsterHealth - attackValue;
+			//reduces monster's health this.monsterHealth = this.monsterHealth - attackValue;
 			this.monsterHealth -= attackValue;
 
 			//we can access methods through "this"
@@ -28,6 +26,16 @@ const app = Vue.createApp({
 		attackPlayer() {
 			const attackValue = getRandomValue(8, 15);
 			this.playerHealth -= attackValue;
+		},
+	},
+	computed: {
+		monsterBarStyles() {
+			return { width: this.monsterHealth + "%" };
+		},
+		playerBarStyles() {
+			return {
+				width: this.playerHealth + "%",
+			};
 		},
 	},
 });
