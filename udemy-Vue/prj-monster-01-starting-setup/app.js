@@ -10,11 +10,13 @@ const app = Vue.createApp({
 		return {
 			playerHealth: 100,
 			monsterHealth: 100,
+			currentRound: 0,
 		};
 	},
 	methods: {
 		//reduces monster's health
 		attackMonster() {
+			this.currentRound++;
 			//Math.floor(Math.random()* (max-min))+ min;
 			const attackValue = getRandomValue(5, 12);
 			//reduces monster's health this.monsterHealth = this.monsterHealth - attackValue;
@@ -27,6 +29,13 @@ const app = Vue.createApp({
 			const attackValue = getRandomValue(8, 15);
 			this.playerHealth -= attackValue;
 		},
+
+		specialAttackMonster() {
+			this.currentRound++;
+			const attackValue = getRandomValue(10, 25);
+			this.monsterHealth -= attackValue;
+			this.attackPlayer();
+		},
 	},
 	computed: {
 		monsterBarStyles() {
@@ -36,6 +45,10 @@ const app = Vue.createApp({
 			return {
 				width: this.playerHealth + "%",
 			};
+		},
+		shouldUseSpecialAttack() {
+			/*It should be executed only passed 3 rounds*/
+			return this.currentRound % 3 !== 0;
 		},
 	},
 });
