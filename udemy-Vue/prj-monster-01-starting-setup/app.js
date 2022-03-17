@@ -65,9 +65,9 @@ const app = Vue.createApp({
 			this.attackPlayer();
 		},
 		getMatchResults() {
-			if (this.playerHealth === 0) {
+			if (this.playerHealth <= 0) {
 				alert("You've Lost!");
-			} else if (this.monsterHealth === 0) {
+			} else if (this.monsterHealth <= 0) {
 				alert("Monster's Lost!");
 			} else if (this.monsterHealth === 0 && this.playerHealth === 0) {
 				alert("This is a Draw");
