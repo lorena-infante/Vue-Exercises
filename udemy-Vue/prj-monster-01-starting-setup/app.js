@@ -15,6 +15,12 @@ const app = Vue.createApp({
 		};
 	},
 	methods: {
+		restartGame() {
+			this.playerHealth = 100;
+			this.monsterHealth = 100;
+			this.currentRound = 0;
+			this.winner = null;
+		},
 		//reduces monster's health
 		attackMonster() {
 			this.currentRound++;
@@ -35,7 +41,7 @@ const app = Vue.createApp({
 			const attackValue = getRandomValue(8, 15);
 			if (this.playerHealth <= 0) {
 				this.playerHealth = 0;
-			} else if (this.playerHealth - attackValue < 0) {
+			} else if (this.playerHealth - attackValue <= 0) {
 				this.playerHealth = 0;
 			} else {
 				this.playerHealth -= attackValue;
@@ -47,7 +53,7 @@ const app = Vue.createApp({
 			const attackValue = getRandomValue(10, 25);
 			if (this.monsterHealth <= 0) {
 				this.monsterHealth = 0;
-			} else if (this.monsterHealth - attackValue < 0) {
+			} else if (this.monsterHealth - attackValue <= 0) {
 				this.monsterHealth = 0;
 			} else {
 				this.monsterHealth -= attackValue;
@@ -64,6 +70,9 @@ const app = Vue.createApp({
 				this.playerHealth += healthValue;
 			}
 			this.attackPlayer();
+		},
+		surrender() {
+			this.winner = "monster";
 		},
 	},
 	watch: {
@@ -89,9 +98,15 @@ const app = Vue.createApp({
 	},
 	computed: {
 		monsterBarStyles() {
+			if (this.monsterHealth < 0) {
+				return { width: "0%" };
+			}
 			return { width: this.monsterHealth + "%" };
 		},
 		playerBarStyles() {
+			if (this.playerHealth < 0) {
+				return { width: "0%" };
+			}
 			return {
 				width: this.playerHealth + "%",
 			};
