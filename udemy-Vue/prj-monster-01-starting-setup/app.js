@@ -11,6 +11,7 @@ const app = Vue.createApp({
 			playerHealth: 100,
 			monsterHealth: 100,
 			currentRound: 0,
+			winner: null,
 		};
 	},
 	methods: {
@@ -64,13 +65,25 @@ const app = Vue.createApp({
 			}
 			this.attackPlayer();
 		},
-		getMatchResults() {
-			if (this.playerHealth <= 0) {
-				alert("You've Lost!");
-			} else if (this.monsterHealth <= 0) {
-				alert("Monster's Lost!");
-			} else if (this.monsterHealth === 0 && this.playerHealth === 0) {
-				alert("This is a Draw");
+	},
+	watch: {
+		//the name of the objects called here must exxist in data
+		playerHealth(value) {
+			if (value <= 0 && this.monsterHealth <= 0) {
+				//A draw
+				this.winner = "draw";
+			} else if (value <= 0) {
+				//player lost
+				this.winner = "monster";
+			}
+		},
+		monsterHealth(value) {
+			if (value <= 0 && this.playerHealth <= 0) {
+				//draw
+				this.winner = "draw";
+			} else if (value <= 0) {
+				//monster lost
+				this.winner = "player";
 			}
 		},
 	},
@@ -86,9 +99,6 @@ const app = Vue.createApp({
 		shouldUseSpecialAttack() {
 			/*It should be executed only passed 3 rounds*/
 			return this.currentRound % 3 !== 0;
-		},
-		getResults() {
-			return this.playerHealth === 0 || this.monsterHealth === 0;
 		},
 	},
 });
