@@ -12,6 +12,7 @@ const app = Vue.createApp({
 			monsterHealth: 100,
 			currentRound: 0,
 			winner: null,
+			logMessages: []
 		};
 	},
 	methods: {
@@ -20,6 +21,7 @@ const app = Vue.createApp({
 			this.monsterHealth = 100;
 			this.currentRound = 0;
 			this.winner = null;
+			this.logMessages = [];
 		},
 		//reduces monster's health
 		attackMonster() {
@@ -35,6 +37,7 @@ const app = Vue.createApp({
 			}
 
 			//we can access methods through "this"
+			this.addLogMessage('player', 'attack', attackValue); 
 			this.attackPlayer();
 		},
 		attackPlayer() {
@@ -46,6 +49,9 @@ const app = Vue.createApp({
 			} else {
 				this.playerHealth -= attackValue;
 			}
+
+			this.addLogMessage("monster", "attack", attackValue); 
+			
 		},
 
 		specialAttackMonster() {
@@ -58,7 +64,7 @@ const app = Vue.createApp({
 			} else {
 				this.monsterHealth -= attackValue;
 			}
-
+			this.addLogMessage("player", "special-attack", attackValue); 
 			this.attackPlayer();
 		},
 		healPlayer() {
@@ -69,11 +75,20 @@ const app = Vue.createApp({
 			} else {
 				this.playerHealth += healthValue;
 			}
+			this.addLogMessage("player", "heal", healthValue); 
 			this.attackPlayer();
 		},
 		surrender() {
 			this.winner = "monster";
 		},
+		addLogMessage(who, what, value) {
+			this.logMessages.unshift({
+				actionBy: who,
+				actionType: what,
+				actionValue: value
+			});
+
+		}
 	},
 	watch: {
 		//the name of the objects called here must exxist in data
