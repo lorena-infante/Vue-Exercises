@@ -2,7 +2,8 @@
 	<section>
 		<h2>Holandas mai frens</h2>
 		<ul>
-			<li>Listones</li>
+			<friend-contact> </friend-contact>
+			<friend-contact> </friend-contact>
 		</ul>
 	</section>
 </template>
