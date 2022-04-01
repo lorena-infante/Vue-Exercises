@@ -1,6 +1,6 @@
 <template>
 	<section>
-		<h2>Holandas mai frens</h2>
+		<header><h1>Holandas mai frens</h1></header>
 		<ul>
 			<friend-contact> </friend-contact>
 			<friend-contact> </friend-contact>
