@@ -1,6 +1,9 @@
 <template>
   <li>
-    <h2>{{ name }}</h2>
+    <h2>{{ name }} {{ friendIsFavorite === '1' ? '(Favorite)' : '' }}</h2>
+    <button @click="toggleFavorite">Toggle Favorite </button> 
+    <br>
+    <br>
     <button @click="toggleDetails">{{detailsAreVisible ? 'Hide': 'Show'}} Details</button>
     <ul v-if="detailsAreVisible">
       <li><strong>Phone: </strong> {{ phoneNumber }} </li>
@@ -14,7 +17,8 @@ export default{
 	props:[
 			'name',
 			'phoneNumber',
-			'email-address'
+			'emailAddress',
+      'isFavorite'
 	],
   data(){
     return{
@@ -25,12 +29,31 @@ export default{
 						phone: "1234567",
 						email: "lorenzo@lorenzini.com",
 					},
+          //Aquí se recibe como valor inicial el que se tenga asignado dentro del app.vue para esta prop
+      friendIsFavorite: this.isFavorite,
     };
   },
   methods: {
     toggleDetails(){
       this.detailsAreVisible = !this.detailsAreVisible;
-    }
+    },
+    //Las props NO se pueden cambiar a través de métodos. Violan el principio de "unidirectional data flow". para eso se debe crear otro elemento en la data y con esa data sí hacer el cambio en el método. PERO solo sí es necesario.
+    
+    /* toggleFavorite(){
+      if(this.isFavorite === '1'){
+        this.isFavorite = '0';
+      }else {
+        this.isFavorite = '1';
+      }
+    }, */
+    //usándolo como data, sí se puede utilizar y cambiar el valor.
+    toggleFavorite(){
+      if(this.friendIsFavorite === '1'){
+        this.friendIsFavorite = '0';
+      }else {
+        this.friendIsFavorite = '1';
+      }
+    },
   }
 }
 </script>

@@ -6,11 +6,13 @@
 			name="Manolo Lorenzo"
 			phone-number="1234567"
 			email-address="lorenzo@lorenzini.com"
+			is-favorite="1"
 			></friend-contact>
 			<friend-contact
 			name="Jolines mi pata"
 			phone-number="98475368"
-			email-address="jolie@laspatas.com"> </friend-contact>
+			email-address="jolie@laspatas.com"
+			is-favorite="0"> </friend-contact>
 		</ul>
 	</section>
 </template>
