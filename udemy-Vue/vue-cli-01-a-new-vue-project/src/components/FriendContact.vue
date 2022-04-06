@@ -1,6 +1,6 @@
 <template>
   <li>
-    <h2>{{ name }} {{ friendIsFavorite ? '(Favorite)' : '' }}</h2>
+    <h2>{{ name }} {{ isFavorite ? '(Favorite)' : '' }}</h2>
     <button @click="toggleFavorite">Toggle Favorite </button> 
     <br>
     <br>
@@ -17,6 +17,10 @@ export default{
   //las props también pueden ser un objeto con definiciones más claras
 	//props:['name','phoneNumber','emailAddress','isFavorite'],
   props:{
+    id:{
+      type: String,
+      required: true,
+    },
     name: {
       type: String,
       required: true,
@@ -44,7 +48,7 @@ export default{
     return{
       detailsAreVisible: false,
       //Aquí se recibe como valor inicial el que se tenga asignado dentro del app.vue para esta prop
-      friendIsFavorite: this.isFavorite,
+      //friendIsFavorite: this.isFavorite,
     };
   },
   methods: {
@@ -62,7 +66,8 @@ export default{
     }, */
     //usándolo como data, sí se puede utilizar y cambiar el valor.
     toggleFavorite(){
-      this.friendIsFavorite = !this.friendIsFavorite;
+      //this.$emit('name-kebab, prop (esta prop va a ser un parámetro que recibe mi función del app.vue)')
+      this.$emit('toggle-favorite', this.id);
     },
   }
 }
