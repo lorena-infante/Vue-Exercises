@@ -1,6 +1,6 @@
 <template>
   <li>
-    <h2>{{ name }} {{ friendIsFavorite === '1' ? '(Favorite)' : '' }}</h2>
+    <h2>{{ name }} {{ friendIsFavorite ? '(Favorite)' : '' }}</h2>
     <button @click="toggleFavorite">Toggle Favorite </button> 
     <br>
     <br>
@@ -30,26 +30,20 @@ export default{
       required: true,
     },
     isFavorite: {
-      type: String,
+      type: Boolean,
       required: false,
-      default: '0',
+      default:false,
       //validator returns true/false
-      validator: function(value){
+     /* validator: function(value){
         return value === '1' || value === '0'
-      }
+      }*/
     },
 
   },
   data(){
     return{
       detailsAreVisible: false,
-      friend: {
-						id: "manuel",
-						name: "Manolo Lorenzo",
-						phone: "1234567",
-						email: "lorenzo@lorenzini.com",
-					},
-          //Aquí se recibe como valor inicial el que se tenga asignado dentro del app.vue para esta prop
+      //Aquí se recibe como valor inicial el que se tenga asignado dentro del app.vue para esta prop
       friendIsFavorite: this.isFavorite,
     };
   },
@@ -68,11 +62,7 @@ export default{
     }, */
     //usándolo como data, sí se puede utilizar y cambiar el valor.
     toggleFavorite(){
-      if(this.friendIsFavorite === '1'){
-        this.friendIsFavorite = '0';
-      }else {
-        this.friendIsFavorite = '1';
-      }
+      this.friendIsFavorite = !this.friendIsFavorite;
     },
   }
 }

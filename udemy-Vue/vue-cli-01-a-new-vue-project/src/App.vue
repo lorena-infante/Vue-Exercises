@@ -3,16 +3,13 @@
 		<header><h1>Holandas mai frens</h1></header>
 		<ul>
 			<friend-contact
-			name="Manolo Lorenzo"
-			phone-number="1234567"
-			email-address="lorenzo@lorenzini.com"
-			is-favorite="1"
+			v-for = "friend in friends"
+			:key = "friend.id"
+			:name = "friend.name"
+			:phone-number= "friend.phone"
+			:email-address= "friend.email"
+			:is-favorite="true"
 			></friend-contact>
-			<friend-contact
-			name="Jolines mi pata"
-			phone-number="98475368"
-			email-address="jolie@laspatas.com"
-			is-favorite="0"> </friend-contact>
 		</ul>
 	</section>
 </template>
