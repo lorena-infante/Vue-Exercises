@@ -44,6 +44,19 @@ export default{
     },
 
   },
+  //emits is the counterpart of props. This helps other devs to know which functions are being exported 
+  emits:['toggle-favorite'],
+  //or 
+ /* emits: {
+    'toggle-favorite': function(id){
+      //validation
+      if(id){
+        return true
+      }else{
+        console.warn('id is missing');
+      }
+    }
+  },*/
   data(){
     return{
       detailsAreVisible: false,
