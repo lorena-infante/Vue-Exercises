@@ -9,6 +9,8 @@
       <li><strong>Phone: </strong> {{ phoneNumber }} </li>
       <li><strong>Email: </strong> {{ emailAddress }}</li>
     </ul>
+    <!-- we can call the $emit method inline, and it'll work as if it were an extra function -->
+    <button @click="$emit('delete', id)">Delete</button>
   </li>
 </template>
 
@@ -45,7 +47,7 @@ export default{
 
   },
   //emits is the counterpart of props. This helps other devs to know which functions are being exported 
-  emits:['toggle-favorite'],
+  emits:['toggle-favorite','delete'],
   //or 
  /* emits: {
     'toggle-favorite': function(id){
