@@ -1,17 +1,19 @@
 <template>
   <li>
-    <form>
-      <h2>Formulario del amigo</h2>
+    <form @submit.prevent = "addUser">
+      <h1>Formulario del amigo</h1>
       <div class="container">
         <label>Name</label>
         <br>
-        <input type="text">
+        <input type="text" v-model="userName">
       </div>
       <div class="container">
         <label>Age</label>
         <br>
-        <input>
+        <input type="number" v-model="userAge">
       </div>
+      <br>
+      <button class="btn-primary pt-2">Add User</button>
     </form>
   </li>
 </template>
@@ -19,19 +21,24 @@
 <script>
 
 export default {
-data(){
-},
-props:{
- useName:{
-   type: String,
-   default:'',
- },
- userAge:{
-   type: Number,
-   default: 0,
- },
+  emits: ['add-user'],
+  data() {
+    return {
+      userName: '',
+      userAge: '',
+    };
+  },
+  methods:{
+    addUser(){
+      this.$emit(
+        'add-user', 
+        this.userName,
+        this.userAge
+      );
+    }
 
-},
+  },
+
 }
 </script>
 <style>
@@ -74,9 +81,10 @@ header {
   text-align: center;
   width: 90%;
   max-width: 40rem;
+  list-style: none;
 }
 
-#app h2 {
+#app h1 {
   font-size: 2rem;
   border-bottom: 4px solid #ccc;
   color: #58004d;
