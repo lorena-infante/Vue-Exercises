@@ -1,7 +1,10 @@
 <template>
   <div id="app">
-    <user-data />
-    <active-user />
+    <user-data 
+    @add-user="addUser" />
+    <active-user
+      :userName = 'userName'
+      :userAge = 'userAge' />
   </div>
 </template>
 
@@ -14,7 +17,21 @@ export default {
   components:{
     UserData,
     ActiveUser,
-
   },
+  data() {
+    return{
+      userName: '',
+      userAge: 0,
+      
+    };
+  },
+  methods:{
+    addUser(name, age){
+      this.userName = name;
+      this.userAge = age;
+      console.log(this.userName, this.userAge);      
+
+    }
+  }
 }
 </script>

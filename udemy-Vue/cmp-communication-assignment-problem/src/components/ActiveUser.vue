@@ -1,11 +1,11 @@
 <template>
   <li id="active-user">
     <div class="name">
-      <h2>Name:</h2>
+      <h2>Name: {{userName}}</h2>
       
     </div>
     <div class="age">
-      <h3>Age:</h3>
+      <h3>Age: {{userAge}}</h3>
       
     </div>
   </li>
@@ -20,6 +20,16 @@ export default {
 
     };
   },
+  props: {
+    userName: {
+      type: String,
+      required: true
+    },
+    userAge: {
+      type: Number,
+      required: true
+    }
+  }
 }
 </script>
 
