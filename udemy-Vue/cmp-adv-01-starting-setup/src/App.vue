@@ -35,7 +35,7 @@ export default {
 };
 </script>
 
-<style>
+<style >
 html {
   font-family: sans-serif;
 }
