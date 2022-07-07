@@ -33,6 +33,7 @@ export default {
     };
   },
   provide(){
+    //Provide + inject should ONLY be used when we have those kind of  "passthrough" components. The default communication method should be props and custom events
     return {
       topics: this.topics,
       //providing a function, same name as injected element
