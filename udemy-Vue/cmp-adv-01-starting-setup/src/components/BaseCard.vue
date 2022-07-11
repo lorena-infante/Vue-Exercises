@@ -11,6 +11,11 @@ slots have names, but the ONE that doesn't, it's called "default" -->
 </template>
 
 <style scoped>
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
 div {
   margin: 2rem auto;
   max-width: 30rem;
