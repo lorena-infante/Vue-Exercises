@@ -1,11 +1,12 @@
 <template>
 <section>
   <base-card> <!--Here the slot is called-->
-    <template v-slot:header>
+  <!-- v-slot === # -->
+    <template #header>
       <h3>{{ fullName }}</h3>
       <base-badge :type="role" :caption="role.toUpperCase()"></base-badge>
     </template>
-    <template v-slot:default>
+    <template #default>
     <p>{{ infoText }}</p>
     </template>
   </base-card>
