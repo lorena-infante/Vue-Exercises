@@ -1,7 +1,11 @@
 <template>
 <!-- slots are used inside of a general wrapper to give the content element a certain style
-Slots are called inside the component where they are going to be used. In this case UserInfo.vue -->
+Slots are called inside the component where they are going to be used. In this case UserInfo.vue
+slots have names, but the ONE that doesn't, it's called "default" -->
  <div>
+  <header>
+    <slot name="header"></slot>
+  </header>
   <slot></slot>
  </div>
 </template>
