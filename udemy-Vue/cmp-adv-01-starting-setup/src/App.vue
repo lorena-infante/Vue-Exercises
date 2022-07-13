@@ -6,7 +6,10 @@
     <!-- <active-goals v-if=" selectedComponent === 'active-goals' "/>
     <manage-goals v-if=" selectedComponent === 'manage-goals' "/> -->
     <!--DYNAMIC COMPONENTS: always use a <component> tag, and the key :is-->
-    <component :is="selectedComponent"> </component>
+      <!--Keep-alive mantains alive the life of the component-->
+      <keep-alive>
+    <component :is="selectedComponent" />
+     </keep-alive>
     <!-- SLOTS
       <badge-list></badge-list>
     <user-info
