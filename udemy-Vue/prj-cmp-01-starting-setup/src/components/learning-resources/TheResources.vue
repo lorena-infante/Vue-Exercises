@@ -17,11 +17,35 @@ export default {
   data(){
     return {
       selectedTab: 'stored-resources',
+      storedResources:[
+        { id: 'official-guide',
+          title: 'Official Guide',
+          description: 'The official Vue documentation',
+          link: 'https://vuejs.org'
+        },
+        { id: 'google',
+          title: 'Google',
+          description: 'Learn how to google',
+          link: 'https://google.com'
+        },
+        { id: 'udemy',
+          title: 'Udemy',
+          description: 'Learn everything',
+          link: 'https://udemy.com'
+        },
+      ],
     };
+  },
+  provide() {
+      return {
+        resources: this.storedResources
+      };
+
   },
   methods: {
     setSelectedTab(tab){
       this.selectedTab = tab;
+      console.log(this.storedResources);
     },
   },
 }

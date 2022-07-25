@@ -13,10 +13,10 @@
 import LearningResources from './LearningResources.vue';
 
 export default {
+  inject: ['resources'],
   components:{
     LearningResources,
   },
-  props: ['resources']
 }
 </script>
 
