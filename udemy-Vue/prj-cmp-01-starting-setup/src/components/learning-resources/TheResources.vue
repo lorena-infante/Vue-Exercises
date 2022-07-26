@@ -11,7 +11,7 @@
     Add Resource 
     </base-button>
   </base-card>
-  <component :is="selectedTab"></component>
+  <component :is="selectedTab" @user-info="addUserInfo"></component>
 </template>
 
 <script>
@@ -37,11 +37,6 @@ export default {
           description: 'Learn how to google',
           link: 'https://google.com'
         },
-        { id: 'udemy',
-          title: 'Udemy',
-          description: 'Learn everything',
-          link: 'https://udemy.com'
-        },
       ],
 
     };
@@ -62,6 +57,9 @@ export default {
   methods:{
     setSelectedTab(tab){
       this.selectedTab = tab;
+    },
+    addUserInfo(userData){
+      this.storedResources.push(userData);
     },
   },
 }

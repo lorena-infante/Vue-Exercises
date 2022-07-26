@@ -3,24 +3,46 @@
     <form>
       <div class="form-control">
         <label for="title">Title</label>
-        <input id="title" name="title" type="text">
+        <input v-model="title" id="title" name="title" type="text">
       </div>
       <div class="form-control">
         <label for="description">Description</label>
-        <textarea id="description" name="description" rows="3"></textarea>
+        <textarea v-model="description" id="description" name="description" rows="3"></textarea>
       </div>
       <div class="form-control">
         <label for="link">Link</label>
-        <input id="link" name="link" type="url">
+        <input v-model="link" id="link" name="link" type="url">
       </div>
       <div>
-        <base-button type="submit">Add Resource</base-button>
+        <base-button type="submit" @click.prevent="sendUserInfo">Add Resource</base-button>
       </div>
 
     </form>
   </base-card>
 </template>
-
+<script>
+export default {
+  data() {
+    return {
+      id:'',
+      title:'',
+      description:'',
+      link:'',
+    };
+  },
+  methods: {
+    sendUserInfo(){
+      let userData = {
+        id : this.title,
+        title: this.title,
+        description: this.description,
+        link : this.link
+      }
+      this.$emit('user-info', userData);
+    }
+  },
+}
+</script>
 <style scoped>
   label {
     font-weight: bold;
