@@ -1,4 +1,13 @@
 <template>
+  <base-dialog v-if="inputIsInvalid" title="Invalid Input" @close="confirmError">
+    <template #default>
+      <p>You need to  type at least one character. </p>
+      <p>Please enter valid content to the form. </p>
+    </template>
+    <template #actions>
+      <base-button @click="confirmError">Okay</base-button>
+    </template>
+  </base-dialog>
   <base-card>
     <form @submit.prevent="submitData">
       <div class="form-control">
@@ -16,20 +25,36 @@
       <div>
         <base-button type="submit">Add Resource</base-button>
       </div>
-
     </form>
   </base-card>
 </template>
 <script>
+import BaseButton from '../UI/BaseButton.vue';
 export default {
+  components:{
+    BaseButton
+  },
   inject:['addResource'],
+  data() {
+    return {
+      inputIsInvalid: false,
+    };
+  },
   methods: {
     submitData(){
       const enteredTitle = this.$refs.titleInput.value;
       const enteredDescription = this.$refs.descInput.value;
       const enteredUrl = this.$refs.linkInput.value;
+      //trim() makes unable to type blank spaces inside the input (for the user)
+      if ( enteredTitle.trim() === '' || enteredDescription.trim() === ''
+       || enteredUrl.trim() ==='') {
+          this.inputIsInvalid = true;
+          return; //return stops the function execution
+      }
       this.addResource(enteredTitle, enteredDescription, enteredUrl);
-
+    },
+    confirmError(){
+      this.inputIsInvalid = false;
     },
   },
 }
