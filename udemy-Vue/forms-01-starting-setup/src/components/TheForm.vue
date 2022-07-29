@@ -87,6 +87,9 @@
       </div>
     </div>
     <div class="form-control">
+      <rating-control> </rating-control>
+    </div>
+    <div class="form-control">
       <input 
         id="confirm-terms" 
         type="checkbox" 
@@ -102,7 +105,12 @@
   </form>
 </template>
 <script>
+import RatingControl from './RatingControl.vue'; 
 export default {
+  components:{
+    RatingControl,
+
+  },
   data(){
     return {
       //for a group of checkboxes: we have an array 
