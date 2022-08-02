@@ -5,7 +5,9 @@
       <div>
         <base-button @click="loadExperiences">Load Submitted Experiences</base-button>
       </div>
-      <ul>
+      <p v-if="isLoading">Loading...</p>
+      <p v-else-if="!isLoading && (!results || results.length === 0)">No data found. Please answer the survey at least once.</p>
+      <ul v-else-if="!isLoading && results && results.length > 0">
         <survey-result
           v-for="result in results"
           :key="result.id"
@@ -27,14 +29,17 @@ export default {
   data(){
     return {
       results:[],
+      isLoading: false,
 
     };
   },
   methods: {
     loadExperiences(){
+      this.isLoading = true;
       axios.get('https://vue-http-demo-c7b0b-default-rtdb.firebaseio.com/survey.json')
       .then(
         (response) => {
+          this.isLoading = false;
          console.log(response.data);
          for(const id in response.data){
           this.results.push(
@@ -47,6 +52,9 @@ export default {
       )
     },
   },
+  mounted(){
+    this.loadExperiences();
+  }
 };
 </script>
 
