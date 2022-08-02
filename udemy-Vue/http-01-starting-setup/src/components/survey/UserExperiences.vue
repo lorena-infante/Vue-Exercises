@@ -5,9 +5,12 @@
       <div>
         <base-button @click="loadExperiences">Load Submitted Experiences</base-button>
       </div>
-      <p v-if="isLoading">Loading...</p>
+      <p v-if="!isLoading && error">
+        {{ error }}
+      </p>
+      <p v-else-if="isLoading">Loading...</p>
       <p v-else-if="!isLoading && (!results || results.length === 0)">No data found. Please answer the survey at least once.</p>
-      <ul v-else-if="!isLoading && results && results.length > 0">
+      <ul v-else>
         <survey-result
           v-for="result in results"
           :key="result.id"
@@ -30,6 +33,7 @@ export default {
     return {
       results:[],
       isLoading: false,
+      error: null,
 
     };
   },
@@ -39,6 +43,7 @@ export default {
       axios.get('https://vue-http-demo-c7b0b-default-rtdb.firebaseio.com/survey.json')
       .then(
         (response) => {
+          this.error = false;
           this.isLoading = false;
          console.log(response.data);
          for(const id in response.data){
@@ -50,6 +55,12 @@ export default {
          }
         }
       )
+      .catch((error) => {
+        this.isLoading = false;
+        this.error = 'Failed to fetch data. Please retry again later.';
+        console.log(error);
+
+      });
     },
   },
   mounted(){
