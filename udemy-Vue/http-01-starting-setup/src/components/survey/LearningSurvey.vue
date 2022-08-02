@@ -69,8 +69,10 @@ export default {
         rating: this.chosenRating,
       })
       .catch((error) => {
+        // throw new Error('Could not save data!');
         console.log(error);
         this.error = 'Something went wrong. Try again later!'
+        // this.error = error.message;
       });
 
       this.enteredName = '';
