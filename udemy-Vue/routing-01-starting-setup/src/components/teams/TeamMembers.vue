@@ -36,7 +36,7 @@ export default {
     // debugger;
     // console.log('selectedTeam: ', this.selectedTeam);
     const members = selectedTeam.members;
-    console.log('members: ',members);
+    //console.log('members: ',members);
     const selectedMembers = [];
     for (const member of members){
       const selectedUser = this.users.find(user => user.id === member);
