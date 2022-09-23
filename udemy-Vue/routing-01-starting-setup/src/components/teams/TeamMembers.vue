@@ -29,10 +29,14 @@ export default {
   },
   created(){
     // this.$route.path // shows teams/t1
+    console.log('$route: ', this.$route);
     //this name will be the SAME as we use for extract the value of the param in main.js
     const teamId = this.$route.params.teamId;
     const selectedTeam =  this.teams.find(team => team.id === teamId);
+    // debugger;
+    // console.log('selectedTeam: ', this.selectedTeam);
     const members = selectedTeam.members;
+    console.log('members: ',members);
     const selectedMembers = [];
     for (const member of members){
       const selectedUser = this.users.find(user => user.id === member);
