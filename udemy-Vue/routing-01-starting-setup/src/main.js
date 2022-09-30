@@ -10,7 +10,8 @@ const router = createRouter({
   routes: [
     { path: '/teams', component: TeamsList }, //our-domain.com/teams => TeamsList
     { path: '/users', component: UsersList },
-    { path: '/teams/:teamId', component: TeamMembers }, //Dynamic id. Everything after : is a param.. domain.com/teams/id => ORDER MATERS: if a route is not dynamic, this should be first called in the order, before the dynamic one/s 
+    { path: '/teams/:teamId', component: TeamMembers, props: true }, //Dynamic id. Everything after : is a param.. domain.com/teams/id => ORDER MATERS: if a route is not dynamic, this should be first called in the order, before the dynamic one/s 
+    /*{props: true}. Tells to Vue Router that dynamic params should be passed into the component as PROPS, rather than just $route !!*/
 
   ],
   // we can change the classes added to the link-router, using linkActive (or Exact) ActiveClass: 'put your class here (or overwrite it)
