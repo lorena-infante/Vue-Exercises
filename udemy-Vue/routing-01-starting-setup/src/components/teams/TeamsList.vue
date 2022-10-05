@@ -1,4 +1,6 @@
 <template>
+  <!-- add a second router-view to call nested route. -->
+  <router-view></router-view>
   <ul>
     <teams-item
       v-for="team in teams"
