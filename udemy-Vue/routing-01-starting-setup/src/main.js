@@ -12,10 +12,11 @@ const router = createRouter({
   routes: [
     { path: '/', redirect:'/teams'},
     /* alias vs redirect: Redirect: changes the URLAlias: just load the same component mentioned in the route */
-    { path: '/teams', 
+    { name:'teams',
+      path: '/teams', 
       component: TeamsList,
       children: [
-        { path: '/teams/:teamId', component: TeamMembers, props: true }
+        { name:'team-members',path: '/teams/:teamId', component: TeamMembers, props: true }
       ] 
     }, //our-domain.com/teams => TeamsList, alias:'/' muestra este componente cuando la ruta sea /nothing
     { path: '/users', component: UsersList },

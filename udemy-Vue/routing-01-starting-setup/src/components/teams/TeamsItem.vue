@@ -15,7 +15,9 @@ export default {
     /****
      * For making dynamic routes/id's it is a good idea to use props. Also, it's useful if they are used as computed properties ;) */
     teamMembersLink (){
-      return '/teams/' + this.id;
+      //return '/teams/' + this.id;
+      return {name:'team-members', params:{ teamId:this.id }}
+      //this.$router.push({name:'team-members', params:{ teamId:this.id }});
     },
 
   },
