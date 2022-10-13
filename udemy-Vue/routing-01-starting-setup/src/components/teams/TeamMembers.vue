@@ -52,7 +52,8 @@ export default {
   },
   created(){
     this.loadTeamMembers(this.teamId);
-
+    console.log('QueryParam: ',this.$route.query);
+  //queryParams are not provided as props. They are only accessible using the $route 
   },
   watch:{
     teamId(newId){
