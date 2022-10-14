@@ -38,15 +38,31 @@ const router = createRouter({
   // we can change the classes added to the link-router, using linkActive (or Exact) ActiveClass: 'put your class here (or overwrite it)
   linkActiveClass: 'active',
   //scroll behaviour allows aus to scroll to a specific position
-  scrollBehavior(to, from, savedPosition) {
-    console.log(to, from, savedPosition);
+  scrollBehavior(_, _2, savedPosition) {
+    // console.log(to, from, savedPosition);
     if (savedPosition){
       return savedPosition;
     }
     return { left:0, top:0 }
   }
 });
-
+//this function will be called before we execute any navigation action (change page, press back arrow into the browser,etc)
+//next will confirm or cancel the navigation action
+router.beforeEach( function(to, from, next) {
+  console.log('Global beforeEach');
+  console.log(to, from);
+  //next() allows the navigation
+  //next(false) doesn't allow the navigation
+  //next('/teams') //accepts the route we wanna navigate to
+  // always check before calling the next();
+  // if(to.name === 'team-members'){
+  //   next();  
+  // }
+  // else{
+  //   next ({name: 'team-members', params: { teamId: 't2'}});
+  // }
+  next();
+});
 const app = createApp(App)
 // app.use() allows us to use a 3rd party package
 app.use(router);
