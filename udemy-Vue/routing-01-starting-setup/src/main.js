@@ -6,6 +6,9 @@ import TeamsList from './components/teams/TeamsList.vue';
 import UsersList from './components/users/UsersList.vue';
 import TeamMembers from './components/teams/TeamMembers.vue';
 import NotFound from './components/nav/NotFound.vue';
+import TeamsFooter from './components/teams/TeamsFooter.vue';
+import UsersFooter from './components/users/UsersFooter.vue';
+
 
 const router = createRouter({
   history: createWebHistory(),
@@ -14,13 +17,22 @@ const router = createRouter({
     /* alias vs redirect: Redirect: changes the URLAlias: just load the same component mentioned in the route */
     { name:'teams',
       path: '/teams', 
-      component: TeamsList,
+      /*we can use more than one router*/
+      components: { 
+        default: TeamsList, 
+        footer: TeamsFooter,
+      },
       children: [
         { name:'team-members',path: '/teams/:teamId', component: TeamMembers, props: true }
       ] 
     }, //our-domain.com/teams => TeamsList, alias:'/' muestra este componente cuando la ruta sea /nothing
-    { path: '/users', component: UsersList },
-     {path: '/:notFound(.*)', component: NotFound}
+    { path: '/users', 
+      components:{
+        default: UsersList,
+        footer: UsersFooter, 
+      }, 
+    },
+    { path: '/:notFound(.*)', component: NotFound}
 
   ],
   // we can change the classes added to the link-router, using linkActive (or Exact) ActiveClass: 'put your class here (or overwrite it)

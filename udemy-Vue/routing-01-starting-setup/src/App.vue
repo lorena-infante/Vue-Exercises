@@ -3,6 +3,10 @@
   <main>
     <router-view></router-view>
   </main>
+  <footer> 
+    <!-- we can have multiple components per route and then send them to different router views -->
+    <router-view name="footer"/>
+  </footer>
 </template>
 
 <script>
