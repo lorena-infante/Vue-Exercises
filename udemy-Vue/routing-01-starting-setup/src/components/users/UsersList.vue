@@ -14,11 +14,16 @@ export default {
   },
   inject: ['users'],
   methods:{
-
     goRouting(){
       //creates a new route navigation from a button inside a component:
       this.$router.push('/teams');
-    }
+    },
+    beforeEnter( to, from, next) {
+      console.log('UsersList cmp beforeEnter');
+      console.log(to, from);
+      next();
+
+    },
   },
 };
 </script>

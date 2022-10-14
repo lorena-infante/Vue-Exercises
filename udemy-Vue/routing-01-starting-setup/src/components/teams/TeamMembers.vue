@@ -55,6 +55,13 @@ export default {
     console.log('QueryParam: ',this.$route.query);
   //queryParams are not provided as props. They are only accessible using the $route 
   },
+beforeRouteUpdate(to, from, next){
+  console.log('Team members cmp beforeRouteUpdate');
+  console.log(to, from);
+  this.loadTeamMembers(to.params.teamId);
+  next();
+},
+
   watch:{
     teamId(newId){
       

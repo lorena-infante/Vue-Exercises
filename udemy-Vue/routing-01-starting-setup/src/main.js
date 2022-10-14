@@ -26,11 +26,18 @@ const router = createRouter({
         { name:'team-members',path: '/teams/:teamId', component: TeamMembers, props: true }
       ] 
     }, //our-domain.com/teams => TeamsList, alias:'/' muestra este componente cuando la ruta sea /nothing
-    { path: '/users', 
+    { 
+      path: '/users', 
       components:{
         default: UsersList,
         footer: UsersFooter, 
-      }, 
+      },
+      // if we want to redirect in a single component we can call the method here too
+      beforeEnter(to, from, next){
+        console.log('Users beforeEnter');
+        console.log(to, from);
+        next();
+      } 
     },
     { path: '/:notFound(.*)', component: NotFound}
 
@@ -47,6 +54,13 @@ const router = createRouter({
   }
 });
 //this function will be called before we execute any navigation action (change page, press back arrow into the browser,etc)
+// execution order:
+
+// 1. global
+
+// 2. router
+
+// 3. component
 //next will confirm or cancel the navigation action
 router.beforeEach( function(to, from, next) {
   console.log('Global beforeEach');
