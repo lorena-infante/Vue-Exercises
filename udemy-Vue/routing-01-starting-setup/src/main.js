@@ -37,6 +37,14 @@ const router = createRouter({
   ],
   // we can change the classes added to the link-router, using linkActive (or Exact) ActiveClass: 'put your class here (or overwrite it)
   linkActiveClass: 'active',
+  //scroll behaviour allows aus to scroll to a specific position
+  scrollBehavior(to, from, savedPosition) {
+    console.log(to, from, savedPosition);
+    if (savedPosition){
+      return savedPosition;
+    }
+    return { left:0, top:0 }
+  }
 });
 
 const app = createApp(App)
