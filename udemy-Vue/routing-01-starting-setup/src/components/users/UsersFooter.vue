@@ -1,5 +1,5 @@
 <template>
-  <h2>User's Footer</h2>
+  <h2>Users Footer</h2>
 </template>
 
 <style scoped>

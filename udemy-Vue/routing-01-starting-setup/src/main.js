@@ -77,6 +77,12 @@ router.beforeEach( function(to, from, next) {
   // }
   next();
 });
+
+router.afterEach(function (to,from) {
+  //sending analytis data, for example
+  console.log('Global AfterEach');
+  console.log(to, from);
+});
 const app = createApp(App)
 // app.use() allows us to use a 3rd party package
 app.use(router);
