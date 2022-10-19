@@ -17,6 +17,7 @@ const router = createRouter({
     /* alias vs redirect: Redirect: changes the URLAlias: just load the same component mentioned in the route */
     { name:'teams',
       path: '/teams', 
+      meta:{ needsAuth:true },
       /*we can use more than one router*/
       components: { 
         default: TeamsList, 
@@ -65,6 +66,12 @@ const router = createRouter({
 router.beforeEach( function(to, from, next) {
   console.log('Global beforeEach');
   console.log(to, from);
+  if(to.meta.needsAuth){
+    console.log('Needs auth!');
+    next();
+  }else {
+    next();
+  }
   //next() allows the navigation
   //next(false) doesn't allow the navigation
   //next('/teams') //accepts the route we wanna navigate to
