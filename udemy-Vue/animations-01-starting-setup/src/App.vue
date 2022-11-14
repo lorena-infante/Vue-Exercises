@@ -4,7 +4,9 @@
     <button @click="animateBlock">Animate</button>
   </div>
   <div class="container">
-    <transition>
+    <!-- name="xx" gives the name in replacement of v- css class for transition -->
+    <!-- <transition enter-to-class="some-class enter-active-class="another-name"> For customizing the classes that will be used with a certain name inside transition css -->
+    <transition name="para">
       <p v-if="paraIsVisible">This is only sometimes visible</p>
     </transition>
     <button @click="toggleParagraph">Toggle paragraph</button>
@@ -91,31 +93,31 @@ button:active {
   animation: slide-scale 0.3s ease-out forwards;
 }
 
-.v-enter-from {
+.para-enter-from {
   /* opacity: 0;
   transform: translateY(-20%); */
 }
 
-.v-enter-active {
+.para-enter-active {
   /* transition: all 0.3s ease-in; */
   animation: slide-scale 0.3s ease-in;
 }
 
-.v-enter-to {
+.para-enter-to {
   /* opacity: 1;
   transform: translateY(0%); */
 }
 
-.v-leave-from {
+.para-leave-from {
   /* opacity: 1;
   transform: translateY(0%); */
 }
 
-.v-leave-active {
+.para-leave-active {
   animation: slide-scale 0.3s ease-out;
 }
 
-.v-leave-to {
+.para-leave-to {
   /* opacity: 0;
   transform: translateY(-20%); */
 }
