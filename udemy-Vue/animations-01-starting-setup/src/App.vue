@@ -88,52 +88,49 @@ button:active {
 }
 .animate {
   /* transform: translateX(-105%); */
-  animation: slide-fade 0.3s ease-out forwards;
+  animation: slide-scale 0.3s ease-out forwards;
 }
 
 .v-enter-from {
-  opacity: 0;
-  transform: translateY(-20%);
+  /* opacity: 0;
+  transform: translateY(-20%); */
 }
 
 .v-enter-active {
-  transition: all 0.3s ease-in;
+  /* transition: all 0.3s ease-in; */
+  animation: slide-scale 0.3s ease-in;
 }
 
 .v-enter-to {
-  opacity: 1;
-  transform: translateY(0%);
+  /* opacity: 1;
+  transform: translateY(0%); */
 }
 
 .v-leave-from {
-  opacity: 1;
-  transform: translateY(0%);
+  /* opacity: 1;
+  transform: translateY(0%); */
 }
 
 .v-leave-active {
-  transition: all 0.3s ease-out;
+  animation: slide-scale 0.3s ease-out;
 }
 
 .v-leave-to {
-  opacity: 0;
-  transform: translateY(-20%);
+  /* opacity: 0;
+  transform: translateY(-20%); */
 }
 
-@keyframes slide-fade {
+@keyframes slide-scale {
    0% {
     transform: translateX(0) scale(1);
   }
 
-  50% {
-    transform: translateX(-100%) scale(1.2);
-  }
-
   70% {
-    transform: translateX(-150%) scale(1.5);
+    transform: translateX(-120%) scale(1.5);
   }
 
   100% {
-    transform: translateX(-170%) scale(1);
+    transform: translateX(-130%) scale(1);
   }
 }
 
