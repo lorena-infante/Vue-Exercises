@@ -6,7 +6,15 @@
   <div class="container">
     <!-- name="xx" gives the name in replacement of v- css class for transition -->
     <!-- <transition enter-to-class="some-class enter-active-class="another-name"> For customizing the classes that will be used with a certain name inside transition css -->
-    <transition name="para">
+    <transition 
+      name="para" 
+      @before-enter="beforeEnter" 
+      @enter="enter" 
+      @after-enter="afterEnter" 
+      @before-leave="beforeLeave"
+      @leave="leave"
+      @after-leave="afterLeave"
+      >
       <p v-if="paraIsVisible">This is only sometimes visible</p>
     </transition>
     <button @click="toggleParagraph">Toggle paragraph</button>
@@ -38,6 +46,30 @@ export default {
     };
   },
   methods: {
+    beforeEnter(el){
+      console.log('before-enter');
+      console.log(el);
+    },
+    enter(el){
+      console.log('enter');
+      console.log(el);
+    },
+    afterEnter(el){
+      console.log('after-enter');
+      console.log(el);
+    },
+    beforeLeave(el){
+      console.log('before-leave');
+      console.log(el);
+    },
+    leave(el){
+      console.log('leave');
+      console.log(el);
+    },
+    afterLeave(el){
+      console.log('after-leave');
+      console.log(el);
+    },
     showUsers(){
       this.usersAreVisible = true;
     },
