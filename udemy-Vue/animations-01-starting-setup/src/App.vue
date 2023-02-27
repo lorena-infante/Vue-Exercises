@@ -14,6 +14,8 @@
       @before-leave="beforeLeave"
       @leave="leave"
       @after-leave="afterLeave"
+      @enter-cancelled="enterCancelled()"
+      @leave-cancelled="leaveCancelled()"
       >
       <p v-if="paraIsVisible">This is only sometimes visible</p>
     </transition>
@@ -43,16 +45,38 @@ export default {
       blockIsAnimated: false,
       paraIsVisible: false,
       usersAreVisible: false,
+      enterInterval: null,
+      leaveInterval:null
+
     };
   },
   methods: {
+    enterCancelled(el){
+      console.log(el);
+      clearInterval(this.enterInterval);
+    },
+    leaveCancelled(el){
+      console.log(el);
+      clearInterval(this.leaveInterval);
+    },
     beforeEnter(el){
       console.log('before-enter');
       console.log(el);
+      el.style.opacity = 0;
     },
-    enter(el){
+    enter(el, done){
       console.log('enter');
       console.log(el);
+      let round = 1;
+      this.enterInterval = setInterval(()=>{
+        el.style.opacity = round * 0.01;
+        round ++;
+        if (round > 100) {
+          clearInterval(this.enterInterval);
+          done();
+        }
+      },20);
+
     },
     afterEnter(el){
       console.log('after-enter');
@@ -61,10 +85,22 @@ export default {
     beforeLeave(el){
       console.log('before-leave');
       console.log(el);
+      el.style.opacity = 1;
     },
-    leave(el){
+    leave(el,done){
       console.log('leave');
       console.log(el);
+      let opacity = 1;
+
+      this.leaveInterval = setInterval(()=>{
+        el.style.opacity = 1 - opacity * 0.01;
+        opacity ++;
+        if(opacity <= 0){
+          clearInterval(this.leaveInterval);
+          done();
+        }
+      },10);
+
     },
     afterLeave(el){
       console.log('after-leave');
@@ -137,35 +173,6 @@ button:active {
 .animate {
   /* transform: translateX(-105%); */
   animation: slide-scale 0.3s ease-out forwards;
-}
-
-.para-enter-from {
-  /* opacity: 0;
-  transform: translateY(-20%); */
-}
-
-.para-enter-active {
-  /* transition: all 0.3s ease-in; */
-  animation: slide-scale 0.3s ease-in;
-}
-
-.para-enter-to {
-  /* opacity: 1;
-  transform: translateY(0%); */
-}
-
-.para-leave-from {
-  /* opacity: 1;
-  transform: translateY(0%); */
-}
-
-.para-leave-active {
-  animation: slide-scale 0.3s ease-out;
-}
-
-.para-leave-to {
-  /* opacity: 0;
-  transform: translateY(-20%); */
 }
 .fade-button-enter-from,
 .fade-button-leave-to {
