@@ -23,10 +23,11 @@ export default {
 
   methods: {
     addOne() {
+      /*commit: mutations, dispatch: actions*/
       //one way of setting the commit
       //this.$store.commit('increase', { value: 10 });
       //another way
-      this.$store.commit({
+      this.$store.dispatch({
         type: 'increase',
         value: 10
       });

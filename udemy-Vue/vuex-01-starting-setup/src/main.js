@@ -1,39 +1,51 @@
 import { createApp } from 'vue';
-import { createStore} from 'vuex';
+import { createStore } from 'vuex';
 
 
 import App from './App.vue';
 
 const store = createStore({
-state(){
-  return {
-    counter: 0,
-  };
-},
-mutations: {
-  increment(state){
-    state.counter = state.counter + 2;
+  state() {
+    return {
+      counter: 0,
+    };
   },
-  increase(state, payload){
-    state.counter = state.counter + payload.value;
-  }
-},
+  mutations: {
+    increment(state) {
+      state.counter = state.counter + 2;
+    },
+    increase(state, payload) {
+      state.counter = state.counter + payload.value;
+    }
+  },
+  //actions receive async functions, as mutations don't. Actions work between components and mutations
 
-getters: {
-  finalCounter(state){
-    return state.counter * 3;
+  actions: {
+    increment(context) {
+      setTimeout(function () {
+        context.commit('increment');
+      }, 2000);
+    },
+    increase(context, payload) {
+      context.commit('increase', payload);
+    }
   },
-  normalizedCounter(_, getters){
-    const finalCounter = getters.finalCounter;
-    if (finalCounter < 0 ){
-      return 0;
+
+  getters: {
+    finalCounter(state) {
+      return state.counter * 3;
+    },
+    normalizedCounter(_, getters) {
+      const finalCounter = getters.finalCounter;
+      if (finalCounter < 0) {
+        return 0;
+      }
+      if (finalCounter > 100) {
+        return 100;
+      }
+      return finalCounter;
     }
-    if (finalCounter > 100){
-      return 100;
-    }
-    return finalCounter;
   }
-}
 });
 
 const app = createApp(App);

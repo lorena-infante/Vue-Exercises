@@ -6,8 +6,8 @@
 export default {
   methods: {
     addOne() {
-      //this is the name of the method inside the mutation that I want to call
-      this.$store.commit('increment');
+      //this is the name of the method inside the mutation/action *always call actions* that I want to call
+      this.$store.dispatch('increment');
     }
   }
 }
