@@ -1,13 +1,13 @@
 <template>
-  <base-container title="Vuex">
-    <the-counter></the-counter>
-      <favorite-value></favorite-value>
-      <button @click="addOne">Add 10</button>
-      <change-counter></change-counter>
-    </base-container>
-      <base-container title="Auth">
-        <user-auth></user-auth>
+      <base-container title="Vuex" v-show="!isLogged">
+      <the-counter></the-counter>
+        <favorite-value></favorite-value>
+        <button @click="addOne">Add 10</button>
+        <change-counter></change-counter>
       </base-container>
+        <base-container title="Auth">
+          <user-auth></user-auth>
+        </base-container>
 </template>
 
 <script>
@@ -18,6 +18,11 @@ import FavoriteValue from './components/FavoriteValue.vue';
 import UserAuth from './components/UserAuth.vue';
 
 export default {
+  data() {
+    return {
+      isLogged: false,
+    }
+  },
   components: {
     BaseContainer,
     TheCounter,
@@ -36,6 +41,14 @@ export default {
         type: 'increase',
         value: 10
       });
+    },
+    clickLogin() {
+      console.log('clicked login');
+      return this.isLogged = true;
+    },
+    clickLogout() {
+      console.log('clicked logout');
+      return this.isLogged = false;
     }
   }
 };
