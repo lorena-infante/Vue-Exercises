@@ -8,6 +8,7 @@ const store = createStore({
   state() {
     return {
       counter: 0,
+      isLoggedIn: false,
     };
   },
   mutations: {
@@ -16,7 +17,11 @@ const store = createStore({
     },
     increase(state, payload) {
       state.counter = state.counter + payload.value;
+    },
+    setAuth(state, payload) {
+      state.isLoggedIn = payload.isAuth;
     }
+
   },
   //actions receive async functions, as mutations don't. Actions work between components and mutations
 
@@ -29,6 +34,12 @@ const store = createStore({
     increase(context, payload) {
       console.log(context);
       context.commit('increase', payload);
+    },
+    login(context) {
+      context.commit('setAuth', { isAuth: true });
+    },
+    logout(context) {
+      context.commit('setAuth', { isAuth: false });
     }
   },
 
@@ -45,6 +56,9 @@ const store = createStore({
         return 100;
       }
       return finalCounter;
+    },
+    userIsAuthenticated(state) {
+      return state.isLoggedIn;
     }
   }
 });
