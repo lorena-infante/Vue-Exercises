@@ -1,25 +1,34 @@
 <template>
-                  <button @click="login" v-if="!isAuth">Login</button>
-                  <button @click="logout" v-if="isAuth">Logout</button>
+    <button @click="userLogin" v-if="!isLoggedIn">Login</button>
+    <button @click="userLogout" v-if="isLoggedIn">Logout</button>
 </template>
 
 
 <script>
 export default {
-      methods: {
-            login() {
-                  this.$store.dispatch('login');
-            },
-            logout() {
-                  this.$store.dispatch('logout');
-            }
-      },
-      computed: {
-            isAuth() {
-                  return this.$store.getters.userIsAuthenticated;
-            }
-      }
-
-
+  /* eslint-disable */
+  methods: {
+    userLogin() {
+      this.$store.dispatch('loginUser');
+    },
+    userLogout() {
+      this.$store.dispatch('logoutUser');
+    }
+  },
+  computed: {
+    isLoggedIn(){
+      return this.$store.getters.userIsLoggedIn;
+    }
+  }
 }
 </script>
+
+<style>
+.d-none {
+  display: none;
+}
+
+.d-flex {
+  display: flex;
+}
+</style>

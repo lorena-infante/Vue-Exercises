@@ -18,9 +18,15 @@ const store = createStore({
     increase(state, payload) {
       state.counter = state.counter + payload.value;
     },
-    setAuth(state, payload) {
-      state.isLoggedIn = payload.isAuth;
-    }
+    loginUser(state, payload) {
+      state.isLoggedIn = payload.userIsLoggedIn;
+      console.log(`state.isLoggedIn: ${payload.userIsLoggedIn}`);
+    },
+    logoutUser(state, payload) {
+      state.isLoggedIn = payload.userIsLoggedIn;
+      console.log(`state.isLoggedIn: ${payload.userIsLoggedIn}`);
+    },
+
 
   },
   //actions receive async functions, as mutations don't. Actions work between components and mutations
@@ -35,18 +41,20 @@ const store = createStore({
       console.log(context);
       context.commit('increase', payload);
     },
-    login(context) {
-      context.commit('setAuth', { isAuth: true });
+    loginUser(context) {
+      context.commit('loginUser', { userIsLoggedIn: true });
     },
-    logout(context) {
-      context.commit('setAuth', { isAuth: false });
+    logoutUser(context) {
+      context.commit('logoutUser', { userIsLoggedIn: false });
     }
+
   },
 
   getters: {
     finalCounter(state) {
       return state.counter * 3;
     },
+    //getter calling another getter
     normalizedCounter(_, getters) {
       const finalCounter = getters.finalCounter;
       if (finalCounter < 0) {
@@ -57,9 +65,10 @@ const store = createStore({
       }
       return finalCounter;
     },
-    userIsAuthenticated(state) {
+    userIsLoggedIn(state) {
       return state.isLoggedIn;
     }
+
   }
 });
 

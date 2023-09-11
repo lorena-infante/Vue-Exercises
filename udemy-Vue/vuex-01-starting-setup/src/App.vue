@@ -1,5 +1,5 @@
 <template>
-    <base-container title="Vuex" v-if="isAuth">
+    <base-container title="Vuex" v-if="isLoggedIn">
       <the-counter></the-counter>
       <favorite-value></favorite-value>
       <button @click="addOne">Add 10</button>
@@ -17,11 +17,7 @@ import ChangeCounter from './components/ChangeCounter.vue';
 import FavoriteValue from './components/FavoriteValue.vue';
 import UserAuth from './components/UserAuth.vue';
 export default {
-  data() {
-    return {
-      isLogged: false,
-    }
-  },
+  /* eslint-disable */
   components: {
     BaseContainer,
     TheCounter,
@@ -29,12 +25,6 @@ export default {
     FavoriteValue,
     UserAuth
   },
-  computed: {
-    isAuth() {
-      return this.$store.getters.userIsAuthenticated;
-    }
-  },
-
   methods: {
     addOne() {
       /*commit: mutations, dispatch: actions*/
@@ -45,15 +35,13 @@ export default {
         type: 'increase',
         value: 10
       });
-    },
-    clickLogin() {
-      console.log('clicked login');
-      return this.isLogged = true;
-    },
-    clickLogout() {
-      console.log('clicked logout');
-      return this.isLogged = false;
     }
+  },
+  computed: {
+    isLoggedIn() {
+      return this.$store.getters.userIsLoggedIn;
+    }
+
   }
 };
 </script>
