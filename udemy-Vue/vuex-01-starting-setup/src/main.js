@@ -4,11 +4,12 @@ import { createStore } from 'vuex';
 
 import App from './App.vue';
 
-const store = createStore({
+// modules
+
+const counterModule = {
   state() {
     return {
       counter: 0,
-      isLoggedIn: false,
     };
   },
   mutations: {
@@ -17,20 +18,8 @@ const store = createStore({
     },
     increase(state, payload) {
       state.counter = state.counter + payload.value;
-    },
-    loginUser(state, payload) {
-      state.isLoggedIn = payload.userIsLoggedIn;
-      console.log(`state.isLoggedIn: ${payload.userIsLoggedIn}`);
-    },
-    logoutUser(state, payload) {
-      state.isLoggedIn = payload.userIsLoggedIn;
-      console.log(`state.isLoggedIn: ${payload.userIsLoggedIn}`);
-    },
-
-
+    }
   },
-  //actions receive async functions, as mutations don't. Actions work between components and mutations
-
   actions: {
     increment(context) {
       setTimeout(function () {
@@ -40,16 +29,8 @@ const store = createStore({
     increase(context, payload) {
       console.log(context);
       context.commit('increase', payload);
-    },
-    loginUser(context) {
-      context.commit('loginUser', { userIsLoggedIn: true });
-    },
-    logoutUser(context) {
-      context.commit('logoutUser', { userIsLoggedIn: false });
     }
-
   },
-
   getters: {
     finalCounter(state) {
       return state.counter * 3;
@@ -64,11 +45,47 @@ const store = createStore({
         return 100;
       }
       return finalCounter;
+    }
+  }
+}
+
+const store = createStore({
+  modules: {
+    counter: counterModule
+  },
+  state() {
+    return {
+      isLoggedIn: false,
+    };
+  },
+  mutations: {
+    loginUser(state, payload) {
+      state.isLoggedIn = payload.userIsLoggedIn;
+      console.log(`state.isLoggedIn: ${payload.userIsLoggedIn}`);
     },
+    logoutUser(state, payload) {
+      state.isLoggedIn = payload.userIsLoggedIn;
+      console.log(`state.isLoggedIn: ${payload.userIsLoggedIn}`);
+    },
+
+
+  },
+  //actions receive async functions, as mutations don't. Actions work between components and mutations
+
+  actions: {
+    loginUser(context) {
+      context.commit('loginUser', { userIsLoggedIn: true });
+    },
+    logoutUser(context) {
+      context.commit('logoutUser', { userIsLoggedIn: false });
+    }
+
+  },
+
+  getters: {
     userIsLoggedIn(state) {
       return state.isLoggedIn;
     }
-
   }
 });
 
