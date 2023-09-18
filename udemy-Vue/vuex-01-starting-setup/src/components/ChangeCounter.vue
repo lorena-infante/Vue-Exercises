@@ -14,7 +14,7 @@ export default {
     // }
     //...mapActions(['increment', 'increase'])
     //another way of calling mapActions
-    ...mapActions({
+    ...mapActions('counter', {
       inc: 'increment',
       increase: 'increase'
     })

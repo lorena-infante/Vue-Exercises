@@ -11,7 +11,8 @@ export default {
     // counter() {
     //   return this.$store.getters.finalCounter;
     // },
-    ...mapGetters(['finalCounter'])
+    //...mapGetters('namespace', ['getter'])
+    ...mapGetters('counter', ['finalCounter'])
   },
 }
 </script>

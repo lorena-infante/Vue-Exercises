@@ -32,7 +32,8 @@ export default {
       //this.$store.commit('increase', { value: 10 });
       //another way
       this.$store.dispatch({
-        type: 'increase',
+        //type: 'namespace/action'
+        type: 'counter/increase',
         value: 10
       });
     }
